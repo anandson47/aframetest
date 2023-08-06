@@ -6,19 +6,36 @@ function createSceneSetting(parent){
     let partymusic=document.createElement("a-entity")
     let assets=document.createElement("a-assets")
     let backgroundImage = document.createElement("img")
+    let video=document.createElement("video")
+    video.id="danceroom"
+    video.src="./assets/anandsdance.mp4"
+    video.autoplay=true
+    assets.appendChild(video)
     backgroundImage.src="./assets/kerala.jpg"
     backgroundImage.id="background"
     assets.appendChild(backgroundImage)
     let sky = document.createElement("a-sky")
     sky.setAttribute("src","#"+backgroundImage.id)
-    scene.setAttribute("sound","src: url(./assets/longwayhome.mp3); autoplay: true")
+    createVideo(scene,"#danceroom")
     scene.appendChild(assets)
     scene.appendChild(sky)
     createskyBox(scene)
     createBalcony(scene)
+    createDisplates(scene, assets)
 
     parent.innerHTML=""
     parent.appendChild(scene)
+}
+
+
+function createVideo(parent , id){
+  
+    let test= document.createElement("a-video")
+    test.setAttribute("position" , "0 5 49.5")
+    test.setAttribute("src",id)
+    test.setAttribute("width","60")
+    test.setAttribute("height","20")
+    parent.appendChild(test)
 }
 
 function createskyBox(parent){
@@ -39,10 +56,10 @@ function createskyBox(parent){
 
     
     entity1.setAttribute("position", "0 -10 0")
-    entity2.setAttribute("position","50 15 0")
-    entity3.setAttribute("position","-50 15 0")
+    entity2.setAttribute("position","50 2.5 0")
+    entity3.setAttribute("position","-50 2.5 0")
     entity4.setAttribute("position", "0 15 0")
-    entity5.setAttribute("position" , "0 15 50")
+    entity5.setAttribute("position" , "0 5 50")
     entity6.setAttribute("position" , "0 15 -50")
 
 
@@ -53,31 +70,31 @@ function createskyBox(parent){
     plane1.setAttribute("material",'side:double')
 
     plane2.setAttribute("color","blanchedalmond")
-    plane2.setAttribute("height","50")
+    plane2.setAttribute("height","25")
     plane2.setAttribute("width","100")
     plane2.setAttribute("rotation","0 -90 0")
     plane2.setAttribute("material",'side:double')
 
     plane3.setAttribute("color","blanchedalmond")
-    plane3.setAttribute("height","50")
+    plane3.setAttribute("height","25")
     plane3.setAttribute("width","100")
-    plane3.setAttribute("rotation","0 90 0")
+    plane3.setAttribute("rotation","0 -90 0")
     plane3.setAttribute("material",'side:double')
 
     plane4.setAttribute("color","blanchedalmond")
     plane4.setAttribute("height","100")
     plane4.setAttribute("width","100")
-    plane4.setAttribute("rotation","-90 0 0")
+    plane4.setAttribute("rotation","90 0 0")
     plane4.setAttribute("material",'side:double')
 
     plane5.setAttribute("color","blanchedalmond")
     plane5.setAttribute("height","100")
-    plane5.setAttribute("width","50")
+    plane5.setAttribute("width","30")
     plane5.setAttribute("rotation","0 0 90")
     plane5.setAttribute("material",'side:double')
 
     plane6.setAttribute("color","blanchedalmond")
-    plane6.setAttribute("height","100")
+    plane6.setAttribute("height","50")
     plane6.setAttribute("width","50")
     plane6.setAttribute("rotation","0 0 -90")
     plane6.setAttribute("material",'side:double; opacity:0')
@@ -96,6 +113,64 @@ function createskyBox(parent){
     parent.appendChild(entity4)
     parent.appendChild(entity5)
     parent.appendChild(entity6)
+}
+
+function createDisplates(parent , assets){
+    //Define art gallery
+    let artGallery=document.createElement("a-entity")
+
+    //Adding images to assets
+    let image1=document.createElement("img")
+    image1.id="mancity"
+    image1.src="./assets/mancity.jpg"
+    assets.appendChild(image1)
+
+    let image2=document.createElement("img")
+    image2.id="csk"
+    image2.src="./assets/csk.jpg"
+    assets.appendChild(image2)
+
+    let image3=document.createElement("img")
+    image3.id="argentina"
+    image3.src="./assets/argentina.jpg"
+    assets.appendChild(image3)
+
+    //adding attributes to the gallery
+    artGallery.setAttribute("position","49.5 2.5 0")
+    
+    let aImage1=document.createElement("a-image")
+    aImage1.setAttribute("src","#mancity")
+    aImage1.setAttribute("height", "20")
+    aImage1.setAttribute("rotation","0 -90 0")
+    aImage1.setAttribute("width", "15")
+    aImage1.setAttribute("position","0 0 20")
+
+    let aImage2=document.createElement("a-image")
+    aImage2.setAttribute("src","#csk")
+    aImage2.setAttribute("height", "20")
+    aImage2.setAttribute("rotation","0 -90 0")
+    aImage2.setAttribute("width", "15")
+    aImage2.setAttribute("position","0 0 0")
+
+    let aImage3=document.createElement("a-image")
+    aImage3.setAttribute("src","#argentina")
+    aImage3.setAttribute("height", "20")
+    aImage3.setAttribute("rotation","0 -90 0")
+    aImage3.setAttribute("width", "15")
+    aImage3.setAttribute("position","0 0 -20")
+    
+    
+
+
+    artGallery.appendChild(aImage1)
+    artGallery.appendChild(aImage2)
+    artGallery.appendChild(aImage3)
+    //Appending it to the parent
+    parent.appendChild(artGallery)
+}
+
+function informationDasboard(parent){
+    
 }
 
 function createBalcony(parent){
